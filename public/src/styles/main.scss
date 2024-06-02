@@ -1,0 +1,35 @@
+@use "./abstracts/reset";
+
+:root {
+	color-scheme: dark;
+
+	--max-width: 70em;
+
+	// colors
+	--dark: hsl(0, 0%, 6%);
+	--white: hsl(26, 100%, 97%);
+
+	--success: #22bb33;
+	--error: #cf0a0a;
+
+	// background
+	--bg-800: var(--dark);
+	--bg-600: hsl(0, 0%, 12%);
+	--bg-400: hsl(0, 0%, 18%);
+	--bg-200: hsl(0, 0%, 24%);
+
+	// text
+	--text: var(--white);
+
+	// accent
+	--accent: hsl(24, 100%, 58%);
+	--accent-hover: hsl(24, 100%, 68%);
+	--accent-active: hsl(24, 100%, 48%);
+
+	accent-color: var(--accent);
+}
+
+body {
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
