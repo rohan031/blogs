@@ -2,7 +2,7 @@
 	"name": "sample1",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "app.js",
 	"scripts": {
 		"build": "cd public && npm i && npm run build && cd .. && node predeploy.js",
 		"start": "node app.js",
