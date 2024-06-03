@@ -1,4 +1,5 @@
 const { signup, login } = require("../controllers/auth");
+const { getBlogs, getBlogById } = require("../controllers/blogs");
 const { getUserById } = require("../controllers/user");
 
 const router = require("express").Router();
@@ -12,6 +13,10 @@ publicRouter.post("/auth/login", login);
 
 // user endpoints
 publicRouter.get("/users/:userId", getUserById);
+
+// blog endpoins
+publicRouter.get("/blogs", getBlogs);
+publicRouter.get("/blogs/:blogId", getBlogById);
 
 router.use(privateRouter);
 router.use(publicRouter);

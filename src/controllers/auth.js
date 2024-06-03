@@ -23,7 +23,8 @@ const signup = async (req, res) => {
 			message: err.message,
 		};
 
-		return res.status(err.statusCode).json(payload);
+		let statusCode = err.statusCode ?? 500;
+		return res.status(statusCode).json(payload);
 	}
 };
 
@@ -50,7 +51,9 @@ const login = async (req, res) => {
 			error: true,
 			message: err.message,
 		};
-		return res.status(err.statusCode).json(payload);
+
+		let statusCode = err.statusCode ?? 500;
+		return res.status(statusCode).json(payload);
 	}
 };
 

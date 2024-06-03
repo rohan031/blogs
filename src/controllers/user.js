@@ -11,7 +11,7 @@ const getUserById = async (req, res) => {
 		let data = await handleGetUserById(userId);
 		let payload = {
 			error: false,
-			data: data[0],
+			data,
 		};
 
 		return res.status(200).json(payload);
@@ -21,7 +21,8 @@ const getUserById = async (req, res) => {
 			message: err.message,
 		};
 
-		return res.status(err.statusCode).json(payload);
+		let statusCode = err.statusCode ?? 500;
+		return res.status(statusCode).json(payload);
 	}
 };
 
