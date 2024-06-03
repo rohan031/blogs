@@ -34,9 +34,23 @@ body {
 		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 
 	background-color: var(--bg-800);
+	padding-block-end: 5em;
 }
 
 .container {
 	width: min(90%, var(--max-width));
 	margin-inline: auto;
+}
+
+.nav {
+	padding-block: 1em;
+
+	background-color: var(--bg-600);
+	padding-inline: 1em;
+
+	> div {
+		display: flex;
+		justify-content: flex-end;
+		gap: 2em;
+	}
 }

@@ -3,8 +3,15 @@ const db = require("../db/db");
 const handleGetCommentByBlogId = async (blogId) => {
 	try {
 		const query = `
-            SELECT user_id, comment_id, text, created_at 
-            FROM comment where blog_id = $1
+        SELECT 
+        u.user_id as "userId",
+        u.name AS "userName",
+        c.comment_id AS "commentId",
+        c.text AS "text",
+        c.created_at AS "createdAt"
+    FROM comment c
+    INNER JOIN users u ON c.user_id = u.user_id
+    WHERE c.blog_id = $1
         `;
 
 		const data = await db.any(query, [blogId]);

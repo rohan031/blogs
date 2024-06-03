@@ -1,4 +1,23 @@
 @use "../../styles/abstracts" as ab;
 
 .profile {
+	display: grid;
+	gap: 3em;
+
+	.loading {
+		min-height: 75vb;
+		display: grid;
+		place-items: center;
+	}
+
+	h1 {
+		font-size: clamp(2.75rem, 4vi, 3.75rem);
+		text-align: center;
+	}
+
+	.blogs {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+		gap: 2em;
+	}
 }

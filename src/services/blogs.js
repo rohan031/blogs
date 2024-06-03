@@ -30,8 +30,19 @@ const handleGetBlogs = async () => {
 const handleGetBlogsById = async (blogId) => {
 	try {
 		const query = `
-            SELECT user_id, blog_id, title, text, created_at 
-            FROM blog where blog_id = $1
+        WITH blogs AS (
+            SELECT blog_id, user_id, title, text, created_at
+            FROM blog where blog_id=$1
+        )
+        SELECT 
+            u.name AS author, 
+            b.blog_id AS "blogId", 
+            b.user_id AS "authorId", 
+            b.title AS title, 
+            b.text AS text, 
+            b.created_at AS "createdAt"
+        FROM blogs b 
+        INNER JOIN users u ON u.user_id = b.user_id;  
         `;
 
 		const data = await db.any(query, [blogId]);

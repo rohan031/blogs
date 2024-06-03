@@ -3,6 +3,7 @@ import styles from "./home.module.scss";
 import { AuthContext } from "../../context/authContext";
 import { Link } from "react-router-dom";
 import BlogItem from "./component/BlogItem";
+import Nav from "../../components/Nav";
 
 interface Blogs {
 	author: string;
@@ -52,23 +53,7 @@ function Home() {
 
 	return (
 		<div className={styles.home}>
-			<nav className={styles.nav}>
-				<div className="container">
-					{user ? (
-						<>
-							<Link to={`author/${user.userId}`}>
-								{user.name}
-							</Link>
-						</>
-					) : (
-						<>
-							<Link to="auth/login">Login</Link>
-							<Link to="auth/signup">Signup</Link>
-						</>
-					)}
-				</div>
-			</nav>
-
+			<Nav />
 			<div className="container">
 				{loading ? (
 					<div className={styles.loading}>Loading...</div>

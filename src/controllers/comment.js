@@ -37,10 +37,10 @@ const postCommentByBlogId = async (req, res) => {
 			throw new BadRequestError("invalid blog id", 400);
 		}
 
-		let data = await handlePostCommentByBlogId(blogId, userId, text);
+		await handlePostCommentByBlogId(blogId, userId, text);
 		let payload = {
 			error: false,
-			data,
+			message: "successfully added comment",
 		};
 
 		return res.status(200).json(payload);

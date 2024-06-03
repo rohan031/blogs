@@ -1,0 +1,28 @@
+.blog_item {
+	background-color: var(--bg-400);
+	border-radius: 0.25em;
+
+	padding: 1em;
+	display: grid;
+	gap: 0.5em;
+
+	h2 {
+		font-size: clamp(2rem, 3.5vi, 3rem);
+	}
+
+	.blog_detail {
+		display: flex;
+		justify-content: space-between;
+
+		font-size: 0.9rem;
+	}
+
+	.text {
+		margin-block: 1em 0.5em;
+
+		max-height: 3rem;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}

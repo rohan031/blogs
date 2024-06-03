@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../home.module.scss";
+import styles from "./blogItem.module.scss";
 import { Link } from "react-router-dom";
 
 interface BlogItemProps {
@@ -25,13 +25,25 @@ const BlogItem = ({
 			<h2>{title}</h2>
 
 			<div className={styles.blog_detail}>
-				<Link to={`author/${authorId}`}>{author}</Link>
+				<Link to={`/author/${authorId}`}>{author}</Link>
 				<p>{d.toDateString()}</p>
 			</div>
 
 			<p className={styles.text}>{text}</p>
 
-			<Link to={`blog/${blogId}`}>Read</Link>
+			<Link
+				to={`/blog/${blogId}`}
+				state={{
+					author,
+					authorId,
+					title,
+					text,
+					createdAt,
+					blogId,
+				}}
+			>
+				Read
+			</Link>
 		</div>
 	);
 };

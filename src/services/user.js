@@ -10,7 +10,7 @@ const handleGetUserById = async (userId) => {
             WHERE user_id = $1
         ),
         BlogData AS (
-            SELECT json_agg(json_build_object('id', blog_id, 'title', title, 'text', text, 'created_at', created_at)) AS data
+            SELECT json_agg(json_build_object('id', blog_id, 'title', title, 'text', text, 'createdAt', created_at)) AS data
             FROM blog
             WHERE user_id = $1
         )
