@@ -16,7 +16,7 @@ const CreateBlog = ({ handleClose, fetchDetail }: CreateBlogProps) => {
 		e.preventDefault();
 
 		let token = sessionStorage.getItem("token");
-		fetch("/blogs", {
+		fetch("/api/blogs", {
 			method: "POST",
 			headers: {
 				Authorization: `Bearer ${token}`,

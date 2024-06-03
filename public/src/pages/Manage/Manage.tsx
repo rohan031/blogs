@@ -35,7 +35,7 @@ function Manage() {
 	}, [user]);
 
 	const fetchDetail = () => {
-		let url = `/users/${user?.userId}`;
+		let url = `/api/users/${user?.userId}`;
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {
@@ -51,7 +51,7 @@ function Manage() {
 	const handleDelete = (blogId: string) => {
 		let token = sessionStorage.getItem("token");
 
-		let url = `/blogs/${blogId}`;
+		let url = `/api/blogs/${blogId}`;
 		fetch(url, {
 			method: "DELETE",
 			headers: { Authorization: `Bearer ${token}` },
@@ -73,7 +73,7 @@ function Manage() {
 
 		let token = sessionStorage.getItem("token");
 
-		let url = `users/${user?.userId}`;
+		let url = `/api/users/${user?.userId}`;
 		fetch(url, {
 			method: "PUT",
 			headers: {

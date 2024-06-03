@@ -36,7 +36,7 @@ function Blog() {
 			setBlogData(state);
 			setLoading(false);
 		} else {
-			let url = `/blogs/${blogId}`;
+			let url = `/api/blogs/${blogId}`;
 			fetch(url)
 				.then((res) => res.json())
 				.then((res) => {
@@ -56,7 +56,7 @@ function Blog() {
 	}
 
 	const fetchComment = () => {
-		let url = `/comment/${blogId}`;
+		let url = `/api/comment/${blogId}`;
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {
@@ -72,7 +72,7 @@ function Blog() {
 
 		let text = commentText;
 		console.log(text);
-		let url = `/comment/${blogId}`;
+		let url = `/api/comment/${blogId}`;
 		let token = sessionStorage.getItem("token");
 		fetch(url, {
 			method: "POST",

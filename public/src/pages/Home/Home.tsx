@@ -21,7 +21,7 @@ function Home() {
 	const [title, setTitle] = useState<string>("");
 
 	useEffect(() => {
-		fetch("blogs")
+		fetch("/api/blogs")
 			.then((res) => res.json())
 			.then((res) => {
 				if (res.error) throw new Error(res.message);

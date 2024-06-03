@@ -35,7 +35,7 @@ const BlogItem = ({
 		e.preventDefault();
 
 		let token = sessionStorage.getItem("token");
-		let url = `/blogs/${blogId}`;
+		let url = `/api/blogs/${blogId}`;
 		fetch(url, {
 			method: "PUT",
 			headers: {

@@ -34,7 +34,7 @@ function Signup() {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		fetch("signup", {
+		fetch("/api/auth/signup", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

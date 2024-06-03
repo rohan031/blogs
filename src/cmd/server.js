@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 const router = require("../routes/router");
-app.use(router);
+app.use("/api", router);
 
 // serving static assets
 app.use(express.static(path.join(__dirname, "../../dist")));

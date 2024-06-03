@@ -22,7 +22,7 @@ function Profile() {
 	const [author, setAuthor] = useState<Author | null>(null);
 
 	useEffect(() => {
-		let url = `/users/${authorId}`;
+		let url = `/api/users/${authorId}`;
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {
