@@ -1,4 +1,4 @@
-CREATE TABLE "user" (
+CREATE TABLE "users" (
   "user_id" uuid PRIMARY KEY DEFAULT (gen_random_uuid()),
   "name" varchar NOT NULL,
   "email" varchar NOT NULL,
@@ -24,6 +24,6 @@ CREATE TABLE "comment" (
 
 ALTER TABLE "comment" ADD FOREIGN KEY ("blog_id") REFERENCES "blog" ("blog_id") ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE "blog" ADD FOREIGN KEY ("user_id") REFERENCES "user" ("user_id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "blog" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE "comment" ADD FOREIGN KEY ("user_id") REFERENCES "user" ("user_id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "comment" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE CASCADE ON UPDATE CASCADE;
