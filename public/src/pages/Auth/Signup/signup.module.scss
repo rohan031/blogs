@@ -1,4 +1,50 @@
 @use "../../../styles/abstracts" as ab;
 
 .signup {
+	height: 100vb;
+	display: grid;
+	place-items: center;
+
+	form {
+		width: min(90%, 30em);
+
+		background-color: var(--bg-600);
+		border-radius: 0.75em;
+
+		padding-inline: clamp(1em, 2.5vi, 2em);
+		padding-block: 2em;
+
+		display: grid;
+		gap: 1.5em;
+
+		.input {
+			display: grid;
+			gap: 0.5em;
+
+			label,
+			input {
+				font-size: clamp(1rem, 1.5vi, 1.25rem);
+			}
+
+			input {
+				padding-inline: 0.25em;
+				padding-block: 0.25em;
+			}
+		}
+
+		.button {
+			text-align: center;
+		}
+
+		.error {
+			font-size: 0.8rem;
+			color: var(--error);
+			text-align: center;
+		}
+
+		.link {
+			display: flex;
+			justify-content: space-between;
+		}
+	}
 }
