@@ -7,25 +7,44 @@ import NotFound from "./pages/Notfound/NotFound";
 import Login from "./pages/Auth/Login/Login";
 import Signup from "./pages/Auth/Signup/Signup";
 import Manage from "./pages/Manage/Manage";
-import { AuthContext } from "./context/authContext";
+import { AuthContext, User } from "./context/authContext";
 
 const App = () => {
-	const [auth, setAuth] = useState<boolean>(false);
+	const [user, setUser] = useState<User | null>(null);
 
 	useEffect(() => {
 		const token = sessionStorage.getItem("token");
 
-		if (token) setAuth(true);
+		if (token) {
+			fetch("/users", {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					if (res.error) return;
+					let u = {
+						userId: res.data[0].userId,
+						name: res.data[0].name,
+						email: res.data[0].email,
+					};
+					setUser(u);
+				})
+				.catch((err) => {
+					console.error(err);
+				});
+		}
 	}, []);
 
 	return (
 		<BrowserRouter>
-			<AuthContext.Provider value={auth}>
+			<AuthContext.Provider value={user}>
 				<Routes>
 					<Route path="/">
 						<Route index element={<Home />} />
 						<Route path="blog/:blogId" element={<Blog />} />
-						<Route path="profile" element={<Profile />} />
+						<Route path="author/:authorId" element={<Profile />} />
 						<Route path="auth/login" element={<Login />} />
 						<Route path="auth/signup" element={<Signup />} />
 						<Route path="manage" element={<Manage />} />

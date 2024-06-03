@@ -30,6 +30,26 @@ const handleGetUserById = async (userId) => {
 	}
 };
 
+const handleGetUser = async (userId) => {
+	try {
+		const query = `
+           SELECT user_id as "userId", name, email
+           FROM users 
+           WHERE user_id=$1
+        `;
+
+		const data = await db.any(query, [userId]);
+		return data;
+	} catch (err) {
+		if (err.code && err.code == "22P02") {
+			throw new BadRequestError("invalid user id", 400);
+		}
+
+		console.error("error updating user: ", err);
+		throw new InternalServerError("internal server error");
+	}
+};
+
 const handlePutUser = async (name, userId) => {
 	try {
 		const query = `
@@ -51,4 +71,5 @@ const handlePutUser = async (name, userId) => {
 module.exports = {
 	handleGetUserById,
 	handlePutUser,
+	handleGetUser,
 };

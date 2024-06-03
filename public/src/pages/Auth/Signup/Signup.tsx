@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/authContext";
 
 function Signup() {
-	const auth = useContext(AuthContext);
+	const user = useContext(AuthContext);
 	const [userInput, setUserInput] = useState({
 		email: "",
 		password: "",
@@ -14,10 +14,10 @@ function Signup() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (auth) {
+		if (user) {
 			navigate("/");
 		}
-	}, [auth]);
+	}, [user]);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let key = e.target.name;

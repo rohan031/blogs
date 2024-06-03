@@ -56,7 +56,7 @@ const handleLogin = async (email, password) => {
 		}
 
 		const accessToken = jwt.sign({ userId: user.user_id }, JWT_SECRET, {
-			expiresIn: "1h",
+			expiresIn: "10h",
 		});
 
 		return {

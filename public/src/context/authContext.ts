@@ -1,3 +1,9 @@
 import { createContext } from "react";
 
-export const AuthContext = createContext(false);
+export interface User {
+	userId: string;
+	name: string;
+	email: string;
+}
+
+export const AuthContext = createContext<null | User>(null);

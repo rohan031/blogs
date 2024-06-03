@@ -10,7 +10,7 @@ const {
 	getCommentByBlogId,
 	postCommentByBlogId,
 } = require("../controllers/comment");
-const { getUserById, putUser } = require("../controllers/user");
+const { getUserById, putUser, getUser } = require("../controllers/user");
 const {
 	verifyToken,
 	verifyPermissionBlogs,
@@ -30,6 +30,7 @@ publicRouter.post("/auth/login", login);
 
 // user endpoints
 publicRouter.get("/users/:userId", getUserById);
+privateRouter.get("/users", getUser);
 privateRouter.put("/users/:userId", verifyPermissionUser, putUser);
 
 // blog endpoins

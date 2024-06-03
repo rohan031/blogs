@@ -1,4 +1,71 @@
 @use "../../styles/abstracts" as ab;
 
 .home {
+	display: grid;
+	gap: 3em;
+
+	.nav {
+		padding-block: 1em;
+
+		background-color: var(--bg-600);
+		padding-inline: 1em;
+
+		> div {
+			display: flex;
+			justify-content: flex-end;
+			gap: 2em;
+		}
+	}
+
+	.loading {
+		min-height: 75vb;
+		display: grid;
+		place-items: center;
+	}
+
+	.container {
+		display: grid;
+		gap: 1.5em;
+
+		input {
+			font-size: 1.25rem;
+			padding-inline: 0.25em 0.5em;
+			padding-block: 0.25em;
+		}
+	}
+
+	.blog {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+		gap: 2em;
+
+		&_item {
+			background-color: var(--bg-400);
+			border-radius: 0.25em;
+
+			padding: 1em;
+			display: grid;
+			gap: 0.5em;
+
+			h2 {
+				font-size: clamp(2rem, 3.5vi, 3rem);
+			}
+
+			.blog_detail {
+				display: flex;
+				justify-content: space-between;
+
+				font-size: 0.9rem;
+			}
+
+			.text {
+				margin-block: 1em 0.5em;
+
+				max-height: 3rem;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+	}
 }
