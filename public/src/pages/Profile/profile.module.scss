@@ -17,7 +17,7 @@
 
 	.blogs {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(var(--w), 1fr));
 		gap: 2em;
 	}
 }
