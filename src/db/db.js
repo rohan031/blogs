@@ -1,5 +1,10 @@
 const pgp = require("pg-promise")();
-const db = pgp(process.env.DB_DSN);
+const db = pgp({
+	connectionString: process.env.DB_DSN,
+	ssl: {
+		rejectUnauthorized: false,
+	},
+});
 
 async function testConnection() {
 	try {
