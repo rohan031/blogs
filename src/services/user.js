@@ -30,6 +30,25 @@ const handleGetUserById = async (userId) => {
 	}
 };
 
+const handlePutUser = async (name, userId) => {
+	try {
+		const query = `
+            UPDATE users
+            SET name=$1
+            WHERE user_id=$2
+        `;
+		await db.none(query, [name, userId]);
+	} catch (err) {
+		if (err.code && err.code == "22P02") {
+			throw new BadRequestError("invalid user id", 400);
+		}
+
+		console.error("error updating user: ", err);
+		throw new InternalServerError("internal server error");
+	}
+};
+
 module.exports = {
 	handleGetUserById,
+	handlePutUser,
 };

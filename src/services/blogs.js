@@ -35,7 +35,64 @@ const handleGetBlogsById = async (blogId) => {
 	}
 };
 
+const handlePostBlog = async (userId, title, text) => {
+	try {
+		const query = `
+           INSERT INTO blog (user_id, title, text) 
+           VALUES ($1, $2, $3)
+        `;
+
+		await db.none(query, [userId, title, text]);
+	} catch (err) {
+		if (err.code && err.code == "22P02") {
+			throw new BadRequestError("invalid user id", 400);
+		}
+
+		console.error("error creating blogs: ", err);
+		throw new InternalServerError("internal server error");
+	}
+};
+
+const handlePutBlog = async (title, text, blogId) => {
+	try {
+		const query = `
+            UPDATE blog
+            SET title=$1, text = $2
+            WHERE blog_id=$3
+        `;
+		await db.none(query, [title, text, blogId]);
+	} catch (err) {
+		if (err.code && err.code == "22P02") {
+			throw new BadRequestError("invalid blog id", 400);
+		}
+
+		console.error("error updating blogs: ", err);
+		throw new InternalServerError("internal server error");
+	}
+};
+
+const handleDeleteBlog = async (blogId) => {
+	try {
+		const query = `
+        DELETE FROM blog 
+        WHERE blog_id=$1
+        `;
+
+		await db.none(query, [blogId]);
+	} catch (err) {
+		if (err.code && err.code == "22P02") {
+			throw new BadRequestError("invalid blog id", 400);
+		}
+
+		console.error("error deleting blogs: ", err);
+		throw new InternalServerError("internal server error");
+	}
+};
+
 module.exports = {
 	handleGetBlogs,
 	handleGetBlogsById,
+	handlePostBlog,
+	handlePutBlog,
+	handleDeleteBlog,
 };

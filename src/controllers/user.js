@@ -1,5 +1,5 @@
 const { BadRequestError } = require("../helpers/errors");
-const { handleGetUserById } = require("../services/user");
+const { handleGetUserById, handlePutUser } = require("../services/user");
 
 const getUserById = async (req, res) => {
 	try {
@@ -26,6 +26,34 @@ const getUserById = async (req, res) => {
 	}
 };
 
+const putUser = async (req, res) => {
+	try {
+		const { name } = req.body;
+		const { userId } = req.params;
+
+		if (!name) {
+			throw new BadRequestError("invalid name", 400);
+		}
+
+		await handlePutUser(name, userId);
+		let payload = {
+			error: false,
+			message: "successfully updated user details",
+		};
+
+		return res.status(200).json(payload);
+	} catch (err) {
+		let payload = {
+			error: true,
+			message: err.message,
+		};
+
+		let statusCode = err.statusCode ?? 500;
+		return res.status(statusCode).json(payload);
+	}
+};
+
 module.exports = {
 	getUserById,
+	putUser,
 };

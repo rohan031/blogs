@@ -19,6 +19,25 @@ const handleGetCommentByBlogId = async (blogId) => {
 	}
 };
 
+const handlePostCommentByBlogId = async (blogId, userId, text) => {
+	try {
+		const query = `
+           INSERT INTO comment (user_id, blog_id, text) 
+           VALUES ($1, $2, $3)
+        `;
+
+		await db.none(query, [userId, blogId, text]);
+	} catch (err) {
+		if (err.code && err.code == "22P02") {
+			throw new BadRequestError("invalid user id", 400);
+		}
+
+		console.error("error creating blogs: ", err);
+		throw new InternalServerError("internal server error");
+	}
+};
+
 module.exports = {
 	handleGetCommentByBlogId,
+	handlePostCommentByBlogId,
 };
