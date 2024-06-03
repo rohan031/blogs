@@ -2,7 +2,7 @@ const { errors } = require("pg-promise");
 const db = require("../db/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { BadRequestError } = require("../helpers/errors");
+const { BadRequestError, InternalServerError } = require("../helpers/errors");
 
 const JWT_SECRET = process.env.SECRET_KEY_ACCESS_TOKEN;
 
@@ -36,7 +36,7 @@ const handleSignup = async (name, email, password) => {
 		}
 
 		console.error("Error creating user: ", err);
-		throw new Error("Internal server error");
+		throw new InternalServerError("Internal server error");
 	}
 };
 
