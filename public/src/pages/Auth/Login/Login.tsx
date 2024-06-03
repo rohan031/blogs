@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./login.module.scss";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../context/authContext";
 
 function Login() {
+	const auth = useContext(AuthContext);
+
 	const [userInput, setUserInput] = useState({
 		email: "",
 		password: "",
@@ -11,12 +14,10 @@ function Login() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const token = sessionStorage.getItem("token");
-
-		if (token) {
+		if (auth) {
 			navigate("/");
 		}
-	});
+	}, [auth]);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let key = e.target.name;

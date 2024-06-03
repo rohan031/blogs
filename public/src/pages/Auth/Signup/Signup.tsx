@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./signup.module.scss";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../context/authContext";
 
 function Signup() {
+	const auth = useContext(AuthContext);
 	const [userInput, setUserInput] = useState({
 		email: "",
 		password: "",
@@ -12,12 +14,10 @@ function Signup() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const token = sessionStorage.getItem("token");
-
-		if (token) {
-			navigate("/auth/login");
+		if (auth) {
+			navigate("/");
 		}
-	});
+	}, [auth]);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let key = e.target.name;
