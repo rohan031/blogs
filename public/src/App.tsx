@@ -11,6 +11,7 @@ import { AuthContext, User } from "./context/authContext";
 
 const App = () => {
 	const [user, setUser] = useState<User | null>(null);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const token = sessionStorage.getItem("token");
@@ -23,7 +24,7 @@ const App = () => {
 			})
 				.then((res) => res.json())
 				.then((res) => {
-					if (res.error) return;
+					if (res.error) throw new Error(res.message);
 					let u = {
 						userId: res.data[0].userId,
 						name: res.data[0].name,
@@ -33,9 +34,26 @@ const App = () => {
 				})
 				.catch((err) => {
 					console.error(err);
-				});
+				})
+				.finally(() => setLoading(false));
+		} else {
+			setLoading(false);
 		}
 	}, []);
+
+	if (loading) {
+		return (
+			<div
+				style={{
+					display: "grid",
+					placeItems: "center",
+					height: "100vb",
+				}}
+			>
+				Loading...
+			</div>
+		);
+	}
 
 	return (
 		<BrowserRouter>

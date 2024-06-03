@@ -40,7 +40,7 @@ function Blog() {
 			fetch(url)
 				.then((res) => res.json())
 				.then((res) => {
-					if (res.error) return;
+					if (res.error) throw new Error(res.message);
 					setBlogData(res.data[0]);
 				})
 				.catch((err) => console.error(err))
@@ -60,7 +60,7 @@ function Blog() {
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {
-				if (res.error) return;
+				if (res.error) throw new Error(res.message);
 				console.log(res);
 				setComments(res.data);
 			})
@@ -85,7 +85,7 @@ function Blog() {
 			.then((res) => res.json())
 			.then((res) => {
 				console.log(res);
-				if (res.error) return;
+				if (res.error) throw new Error(res.message);
 
 				setCommentText("");
 				fetchComment();

@@ -1,4 +1,66 @@
 @use "../../styles/abstracts" as ab;
 
 .manage {
+	display: grid;
+	gap: 3em;
+
+	.profile {
+		display: grid;
+		gap: 3em;
+	}
+
+	.loading {
+		min-height: 75vb;
+		display: grid;
+		place-items: center;
+	}
+
+	h1 {
+		font-size: clamp(2.75rem, 4vi, 3.75rem);
+		text-align: center;
+	}
+
+	.blogs {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+		gap: 2em;
+	}
+
+	dialog {
+		border: none;
+
+		&::backdrop {
+			background-color: rgba(0, 0, 0, 0.425);
+			backdrop-filter: blur(5px);
+		}
+
+		width: min(90%, 50em);
+		background-color: var(--bg-400);
+
+		padding: 0;
+		padding: clamp(1em, 2.5vi, 2em);
+		border-radius: 0.75em;
+
+		form {
+			display: grid;
+			gap: 1.5em;
+
+			textarea {
+				resize: vertical;
+				min-height: 15rem;
+				max-height: 25rem;
+			}
+
+			div {
+				display: flex;
+				gap: 2em;
+				justify-content: flex-end;
+			}
+		}
+	}
+
+	.action {
+		display: flex;
+		gap: 2em;
+	}
 }

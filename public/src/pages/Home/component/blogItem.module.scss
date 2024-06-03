@@ -25,4 +25,11 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
+
+	.button {
+		display: flex;
+		justify-content: flex-end;
+		gap: 1em;
+		align-items: center;
+	}
 }

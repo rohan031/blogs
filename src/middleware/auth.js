@@ -49,7 +49,7 @@ const verifyPermissionBlogs = async (req, res, next) => {
 			throw new BadRequestError("blog not found", 404);
 		}
 
-		let uid = data[0].user_id;
+		let uid = data[0].authorId;
 
 		if (userId != uid) {
 			throw new BadRequestError("unauthorized", 401);

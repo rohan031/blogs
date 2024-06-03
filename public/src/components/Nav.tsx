@@ -8,6 +8,8 @@ const Nav = () => {
 	return (
 		<nav className="nav">
 			<div className="container">
+				<Link to="/">Home</Link>
+
 				{user ? (
 					<>
 						<Link to={`/manage`}>{user.name}</Link>

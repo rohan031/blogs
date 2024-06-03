@@ -24,7 +24,7 @@ function Home() {
 		fetch("blogs")
 			.then((res) => res.json())
 			.then((res) => {
-				if (res.error) return;
+				if (res.error) throw new Error(res.message);
 				setBlogs(res.data);
 			})
 			.catch((err) => {

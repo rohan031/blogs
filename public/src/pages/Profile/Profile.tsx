@@ -26,7 +26,7 @@ function Profile() {
 		fetch(url)
 			.then((res) => res.json())
 			.then((res) => {
-				if (res.error) return;
+				if (res.error) throw new Error(res.message);
 				setAuthor(res.data[0]);
 			})
 			.catch((err) => {
